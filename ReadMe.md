@@ -1,4 +1,5 @@
-## Tetris
+Tetris
+========
 
 Made by Nicolas Fontes.
 
@@ -16,8 +17,8 @@ Features:
   -  Bonuses
   -  Best scores
 
-Needed :
-========
+## Needed :
+
 A compiler, here I use **clang**
 
     sudo apt-get install clang
