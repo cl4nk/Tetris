@@ -1317,34 +1317,34 @@ void pix_load_all (Info *info) {
 void soundBuffers_load_all (Info * info) {
 	char tmp[100];
 	sprintf(tmp, "%sSFX_PieceMoveLR.ogg", SOUND_FOLDER);
-	info->soundBuffers [BUFFER_LEFTRIGHT] = sfSoundBuffer_CreateFromFile (tmp);
+	info->soundBuffers [BUFFER_LEFTRIGHT] = sfSoundBuffer_createFromFile (tmp);
 
 	sprintf(tmp, "%sSFX_PieceFall.ogg", SOUND_FOLDER);
-	info->soundBuffers [BUFFER_DOWN] = sfSoundBuffer_CreateFromFile (tmp);
+	info->soundBuffers [BUFFER_DOWN] = sfSoundBuffer_createFromFile (tmp);
 
 	sprintf(tmp, "%sSFX_PieceLockdown.ogg", SOUND_FOLDER);
-	info->soundBuffers [BUFFER_ADD_PIECE] = sfSoundBuffer_CreateFromFile (tmp);
+	info->soundBuffers [BUFFER_ADD_PIECE] = sfSoundBuffer_createFromFile (tmp);
 
 	sprintf(tmp, "%sSFX_PieceRotateLR.ogg", SOUND_FOLDER);
-	info->soundBuffers [BUFFER_ROTATE] = sfSoundBuffer_CreateFromFile (tmp);
+	info->soundBuffers [BUFFER_ROTATE] = sfSoundBuffer_createFromFile (tmp);
 	
 	sprintf(tmp, "%sSFX_PieceRotateFail.ogg", SOUND_FOLDER);
-	info->soundBuffers [BUFFER_ROTATE_FAIL] = sfSoundBuffer_CreateFromFile (tmp);
+	info->soundBuffers [BUFFER_ROTATE_FAIL] = sfSoundBuffer_createFromFile (tmp);
 
 	sprintf(tmp, "%sSFX_SpecialLineClearTriple.ogg", SOUND_FOLDER);
-	info->soundBuffers [BUFFER_CLEAR_LINE] = sfSoundBuffer_CreateFromFile (tmp);
+	info->soundBuffers [BUFFER_CLEAR_LINE] = sfSoundBuffer_createFromFile (tmp);
 
 	sprintf(tmp, "%sSFX_PieceTouchLR.ogg", SOUND_FOLDER);
-	info->soundBuffers [BUFFER_TOUCH_LF] = sfSoundBuffer_CreateFromFile (tmp);
+	info->soundBuffers [BUFFER_TOUCH_LF] = sfSoundBuffer_createFromFile (tmp);
 
 	sprintf(tmp, "%sSFX_PieceHold.ogg", SOUND_FOLDER);
-	info->soundBuffers [BUFFER_SWITCH] = sfSoundBuffer_CreateFromFile (tmp);
+	info->soundBuffers [BUFFER_SWITCH] = sfSoundBuffer_createFromFile (tmp);
 
 	sprintf(tmp, "%sSFX_SpecialLineClearSingle.ogg", SOUND_FOLDER);
-	info->soundBuffers [BUFFER_BONUS] = sfSoundBuffer_CreateFromFile (tmp);
+	info->soundBuffers [BUFFER_BONUS] = sfSoundBuffer_createFromFile (tmp);
 
 	sprintf(tmp, "%sSFX_GameOver.wav", SOUND_FOLDER);
-	info->soundBuffers [BUFFER_GAMEOVER] = sfSoundBuffer_CreateFromFile (tmp);
+	info->soundBuffers [BUFFER_GAMEOVER] = sfSoundBuffer_createFromFile (tmp);
 }
 
 void info_soundBuffers_destroy (Info * info) {
@@ -1355,14 +1355,14 @@ void info_soundBuffers_destroy (Info * info) {
 
 void soundStack_destroy (SoundStack * stack) {
 	for (int i = 0; i < stack->nbr_sounds; i ++) {
-		sfSound_Destroy(stack->list_sounds[i]);
+		sfSound_destroy(stack->list_sounds[i]);
 	}
 	free (stack);
 }
 
 void soundStack_init (SoundStack * stack, int n) {
 	for (int i = 0; i < n; i ++) {
-		stack->list_sounds[i] = sfSound_Create();
+		stack->list_sounds[i] = sfSound_create();
 	}
 	stack->nbr_sounds = n;
 	stack->sound_to_load = 0;
@@ -1371,28 +1371,28 @@ void soundStack_init (SoundStack * stack, int n) {
 void info_sound_play (Info * info, int index) {
 	SoundStack * stack = info->soundStack;
 	int i = stack->sound_to_load;
-	sfSound_SetBuffer(stack->list_sounds[i], info->soundBuffers[index]);
-	sfSound_Play(stack->list_sounds[i]);
+	sfSound_setBuffer(stack->list_sounds[i], info->soundBuffers[index]);
+	sfSound_play(stack->list_sounds[i]);
 	stack->sound_to_load = (i + 1) % stack->nbr_sounds;
 
 }
 
 void info_init_music (Info * info) {
-	info->music = sfMusic_CreateFromFile("music.ogg");
+	info->music = sfMusic_createFromFile("music.ogg");
 	if (info->music != NULL) {
-		sfMusic_SetVolume (info->music, 30);
-		sfMusic_SetLoop (info->music, TRUE);
+		sfMusic_setVolume (info->music, 30);
+		sfMusic_setLoop (info->music, TRUE);
 	}
 }
 
 void info_play_music (Info * info) {
 	if (info->music == NULL) return;
-	sfMusic_Play(info->music);
+	sfMusic_play(info->music);
 }
 
 void info_pause_music (Info * info) {
 	if (info->music == NULL) return;
-	sfMusic_Pause(info->music);
+	sfMusic_pause(info->music);
 }
 
 /*---------------------------------- S A V E ------------------------------------*/
