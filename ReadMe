@@ -1,0 +1,5 @@
+Ce projet a besoin de l'installation (facultative)
+de la police de caractère présente dans le projet et de
+l'installation de CSFML grace à 
+
+apt-get install libcsfml-dev
